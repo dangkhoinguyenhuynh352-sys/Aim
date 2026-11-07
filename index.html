@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FF Proxy GEN - Dark GTP</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',sans-serif}
+  :root{--g:#00ff9d;--d:#0a0e0d;--p:#121614;--b:#1e2a24;--t:#e8fff4}
+  body{background:var(--d);color:var(--t);padding:16px;min-height:100vh}
+  h1{font-size:20px;color:var(--g);text-align:center;margin-bottom:4px;text-shadow:0 0 12px var(--g)}
+  .sub{text-align:center;font-size:11px;color:#5a7a6a;margin-bottom:16px}
+  .card{background:var(--p);border:1px solid var(--b);border-radius:10px;padding:12px;margin-bottom:12px}
+  .card h2{font-size:13px;color:var(--g);margin-bottom:10px;padding-bottom:6px;border-bottom:1px dashed var(--b)}
+  .row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;font-size:13px;border-bottom:1px solid #0e1412}
+  .row:last-child{border:0}
+  .row label{flex:1;color:#cfe8dc}
+  input[type=range]{width:110px;accent-color:var(--g)}
+  .val{min-width:38px;text-align:right;color:var(--g);font-weight:700;font-size:12px}
+  .sw{position:relative;width:42px;height:22px;background:#22302a;border-radius:20px;cursor:pointer;transition:.2s;flex:0 0 42px}
+  .sw.on{background:var(--g);box-shadow:0 0 10px var(--g)}
+  .sw::after{content:"";position:absolute;top:2px;left:2px;width:18px;height:18px;background:var(--d);border-radius:50%;transition:.2s}
+  .sw.on::after{left:22px}
+  select{background:#0e1412;color:var(--g);border:1px solid var(--b);border-radius:6px;padding:6px;font-size:12px;width:130px}
+  .btn{width:100%;padding:12px;border:0;border-radius:8px;font-weight:700;font-size:14px;cursor:pointer;margin-top:6px}
+  .b1{background:var(--g);color:var(--d)}
+  .b2{background:#1e2a24;color:var(--g);border:1px solid var(--g)!important;margin-bottom:8px}
+  pre{background:#060a08;border:1px solid var(--b);border-radius:8px;padding:10px;font-size:10px;max-height:260px;overflow:auto;color:#7fffc0;white-space:pre-wrap;word-break:break-all}
+  .badge{display:inline-block;font-size:9px;padding:2px 6px;border-radius:4px;background:#0e2a1e;color:var(--g);margin-left:6px}
+  .warn{font-size:10px;color:#ffb84d;margin-top:6px;line-height:1.4}
+  .foot{text-align:center;font-size:10px;color:#4a665a;margin-top:20px}
+</style>
+</head>
+<body>
+
+<h1>⚡ FF PROXY GEN ⚡</h1>
+<div class="sub">DARK GTP · AIMBOT · FPS · BYPASS · ANTI-BAN</div>
+
+<!-- AIM -->
+<div class="card">
+  <h2>🎯 AIMBOT <span class="badge">PRO</span></h2>
+  <div class="row"><label>Bật Aimbot</label><div class="sw on" data-k="aim_on"></div></div>
+  <div class="row"><label>Chế độ</label>
+    <select id="aim_mode">
+      <option value="head">Dính đầu (Head)</option>
+      <option value="chest">Ngực (Chest)</option>
+      <option value="snap">Snap / Kéo mạnh</option>
+      <option value="silent">Silent (sát thương)</option>
+      <option value="auto">Auto Lock</option>
+    </select>
+  </div>
+  <div class="row"><label>Lực kéo</label><input type="range" id="aim_p" min="40" max="100" value="80"><span class="val" id="aim_pv">80%</span></div>
+  <div class="row"><label>FOV (vùng khóa)</label><input type="range" id="fov" min="50" max="300" value="150"><span class="val" id="fovv">150</span></div>
+  <div class="row"><label>Tỉ lệ Headshot</label><input type="range" id="hs" min="50" max="100" value="80"><span class="val" id="hsv">80%</span></div>
+  <div class="row"><label>Kéo mượt (smooth)</label><input type="range" id="smooth" min="0" max="100" value="35"><span class="val" id="smoothv">35</span></div>
+</div>
+
+<!-- ANTI RUNG -->
+<div class="card">
+  <h2>🔧 KIỂM SOÁT SÚNG</h2>
+  <div class="row"><label>Bỏ rung tâm</label><div class="sw on" data-k="shake_off"></div></div>
+  <div class="row"><label>Giảm Recoil</label><input type="range" id="recoil" min="0" max="100" value="85"><span class="val" id="recoilv">85%</span></div>
+  <div class="row"><label>Giảm Spread</label><input type="range" id="spread" min="0" max="100" value="70"><span class="val" id="spreadv">70%</span></div>
+</div>
+
+<!-- FPS -->
+<div class="card">
+  <h2>🚀 HIỆU NĂNG</h2>
+  <div class="row"><label>Tăng FPS</label><div class="sw on" data-k="fps_on"></div></div>
+  <div class="row"><label>Mục tiêu FPS</label>
+    <select id="fps">
+      <option value="60">60</option>
+      <option value="90">90</option>
+      <option value="120" selected>120 (tối đa)</option>
+      <option value="144">144</option>
+    </select>
+  </div>
+  <div class="row"><label>Graphic Smooth</label><div class="sw on" data-k="graph_low"></div></div>
+</div>
+
+<!-- RÀO CẢ -->
+<div class="card">
+  <h2>🌍 BYPASS RÀO CẢ</h2>
+  <div class="row"><label>Bỏ khóa vùng</label><div class="sw on" data-k="bypass"></div></div>
+  <div class="row"><label>Unlock Server</label><div class="sw on" data-k="unlock_server"></div></div>
+  <div class="row"><label>Ẩn Proxy Flag</label><div class="sw on" data-k="hide_flag"></div></div>
+</div>
+
+<!-- ANTI BAN -->
+<div class="card">
+  <h2>🛡️ ANTI BAN</h2>
+  <div class="row"><label>Chế độ an toàn (không đụng match)</label><div class="sw on" data-k="safe"></div></div>
+  <div class="row"><label>Spoof thiết bị</label><div class="sw on" data-k="spoof"></div></div>
+  <div class="warn">⚠️ Chế độ an toàn: chỉ chèn field lạ, không sửa điểm cuối trận → khó bị flag. Tắt = mạnh hơn nhưng dễ bị quét.</div>
+</div>
+
+<button class="btn b1" onclick="gen()">⚙️ TẠO FILE PROXY</button>
+<button class="btn b2" onclick="copyCode()">📋 Copy code</button>
+<button class="btn b2" onclick="dl()">💾 Tải file .js</button>
+
+<pre id="out">// Bấm "TẠO FILE PROXY" để sinh code...</pre>
+
+<div class="foot">FF Proxy GEN · dùng với Proxypin · v2.1</div>
+
+<script>
+// nút gạt
+document.querySelectorAll('.sw').forEach(s=>{
+  s.onclick=()=>s.classList.toggle('on');
+});
+// slider value
+['aim_p','fov','hs','smooth','recoil','spread'].forEach(id=>{
+  const el=document.getElementById(id), v=document.getElementById(id+'v');
+  el.oninput=()=>v.textContent=el.value+(id==='fov'?'':('%'));
+});
+const S=k=>document.querySelector(`[data-k="${k}"]`)?.classList.contains('on');
+const V=id=>document.getElementById(id).value;
+
+function gen(){
+  const cfg={
+    aim_on:S('aim_on'), aim_mode:V('aim_mode'), aim_p:V('aim_p')/100,
+    fov:+V('fov'), hs:V('hs')/100, smooth:V('smooth')/100,
+    shake_off:S('shake_off'), recoil:V('recoil')/100, spread:V('spread')/100,
+    fps_on:S('fps_on'), fps:+V('fps'), graph_low:S('graph_low'),
+    bypass:S('bypass'), unlock_server:S('unlock_server'), hide_flag:S('hide_flag'),
+    safe:S('safe'), spoof:S('spoof')
+  };
+  const code = build(cfg);
+  document.getElementById('out').textContent=code;
+}
+function build(c){
+  return `/**
+ * FF PROXY - GEN BY GTP DARK
+ * Mode: ${c.aim_mode} | FPS: ${c.fps} | Safe: ${c.safe}
+ * Gắn URL: *clientbp.ggpow.top*
+ */
+const HOST="clientbp.ggpow.top";
+const C=${JSON.stringify(c,null,2)};
+
+function onResponse(ctx,req,res){
+  try{
+    const u=req.url||""; let b=res.body;
+    if(!u.includes(HOST))return res;
+    const isCfg=u.match(/\\/config|\\/login|\\/getconfig/i);
+    const isInfo=u.match(/\\/gameinfo|\\/startmatch/i);
+    const isMatch=u.match(/\\/match_end|\\/result/i);
+
+    // an toàn: bỏ qua match_end nếu safe=true
+    if(isMatch && C.safe) return res;
+
+    let j=null;
+    if((isCfg||isInfo||isMatch)&&b){ try{j=JSON.parse(b)}catch{return res} }
+    if(!j) return res;
+
+    // ===== AIMBOT =====
+    if(C.aim_on){
+      const modes={head:{aim_head:1,headshot_rate:C.hs},
+        chest:{aim_chest:1},snap:{aim_snap:1,aim_strength:1},
+        silent:{silent_aim:1},auto:{auto_lock:1}};
+      Object.assign(j,{aim_assist:1,aim_strength:C.aim_p,fov:C.fov,
+        smooth:C.smooth,aim_mode:C.aim_mode},modes[C.aim_mode]||{});
+    }
+    // ===== KIỂM SOÁT SÚNG =====
+    if(C.shake_off) Object.assign(j,{shake_reduce:0.1,recoil_control:1,
+      recoil_factor:1-C.recoil,spread_factor:1-C.spread});
+    // ===== FPS =====
+    if(C.fps_on) Object.assign(j,{fps:C.fps,max_fps:C.fps,frame_rate:C.fps,
+      ...(C.graph_low?{render_quality:"smooth",shadow:0,anti_alias:0,graphic:0}:{})});
+    // ===== RÀO CẢ =====
+    if(C.bypass) Object.assign(j,{bypass_region:1,region_lock:0,unlock_region:true});
+    if(C.unlock_server) Object.assign(j,{server_unlock:1,all_server:true});
+    if(C.hide_flag) Object.assign(j,{proxy_bypass:1,proxy_hide:1,anti_proxy_detect:1});
+    // ===== ANTI BAN =====
+    if(C.spoof) Object.assign(j,{device_spoof:1,device_id:rand(),model_spoof:"patch"});
+    if(C.safe) Object.assign(j,{safe_mode:1,anti_cheat_skip:0});
+
+    res.body=JSON.stringify(j);
+  }catch(e){console.log("[FF]",e.message)}
+  return res;
+}
+function rand(){return Array.from({length:16},()=>"0123456789abcdef"[Math.random()*16|0]).join("")}
+`;
+}
+async function copyCode(){
+  await navigator.clipboard.writeText(document.getElementById('out').textContent);
+  alert("Đã copy!");
+}
+function dl(){
+  const blob=new Blob([document.getElementById('out').textContent],{type:"application/javascript"});
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(blob);
+  a.download="ff_aim_proxy.js";a.click();
+}
+gen();
+</script>
+</body>
+</html>
